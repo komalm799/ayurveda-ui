@@ -69,14 +69,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* 2. MARQUEE - Ayuvya jaisa Double */}
       
-      <div className="bg-[#0f3d2e] text-[#d6e8c5] py-2.5 text-[11px] tracking-widest overflow-hidden whitespace-nowrap">
-       <div className="animate-marquee flex gap-10 w-max">
-        <span>✦ Ancient Wisdom, Modern Formulations ✦ Crafted by Certified Ayurveda Experts ✦ Pure & Natural ✦</span>
-        <span>✦ Ancient Wisdom, Modern Formulations ✦ Crafted by Certified Ayurveda Experts ✦ Pure & Natural ✦</span>
-       </div>
-      </div>
 
       <Categories onSelect={(slug) => console.log(slug)} />
 
