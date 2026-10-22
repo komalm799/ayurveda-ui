@@ -41,7 +41,7 @@ export default function Categories() {
                 <img src={item.img} alt={item.title1} className="w-full h-full object-contain object-right" />
               </div>
 
-              {/* Green Arrow - same rahega 💚 */}
+              {/* Green Arro */}
               <span className="absolute right-[6px] md:right-[8px] top-1/2 -translate-y-1/2 bg-[#7f9e7b] text-white w-[28px] h-[28px] md:w-[32px] md:h-[32px] rounded-full grid place-items-center text-[14px]">
                 →
               </span>

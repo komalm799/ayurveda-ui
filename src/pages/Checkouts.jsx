@@ -18,10 +18,10 @@ export default function Checkouts() {
     setCart(saved);
   }, []);
 
-  // --- YE FIX ADDED HAI - NaN HATANE KE LIYE ---
+  //  FIX ADDED  - 
   const getPrice = (item) => {
     const raw = item.price || 0;
-    // ₹599, "₹599", "599" sab ko number me convert
+    
     const num = parseInt(String(raw).replace(/[^0-9]/g, ""), 10);
     return isNaN(num) ? 0 : num;
   };
