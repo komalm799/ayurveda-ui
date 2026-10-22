@@ -7,87 +7,90 @@ const products = [
   { id: 3, name: 'Natural Skin Care', category: 'Skin Care', price: 299, oldPrice: 449, rating: 4.7, image: 'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=500&q=80' },
   { id: 4, name: 'Herbal Hair Care', category: 'Hair Care', price: 349, oldPrice: 499, rating: 4.5, image: 'https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?auto=format&fit=crop&w=500&q=80' },
   { id: 5, name: 'Herbal Care Essentials', category: 'Herbal Care', price: 449, oldPrice: 649, rating: 4.6, image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=500&q=80' },
-  { id: 6, name: 'Daily Wellness Kit', category: 'Wellness', price: 599, oldPrice: 799, rating: 4.9, image: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=500&q=80' },
+  { id: 6, name: 'Daily Wellness Kit', category: 'Wellness', price: 599, oldPrice: 799, rating: 4.9, image: 'https://images.unsplash.com/photo-1608571423902-eed4a94d8108?w=500' },
+  { id: 7, name: 'Gym & Fitness Booster', category: 'Gym & Fitness', price: 699, oldPrice: 999, rating: 4.8, image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=500&q=80' },
+  { id: 8, name: 'Liv Cleanse Shots', category: 'Liver Health', price: 1299, oldPrice: 1599, rating: 4.7, image: 'https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=500&q=80' },
+  { id: 9, name: 'Sugar Management Care', category: 'Sugar Management', price: 599, oldPrice: 899, rating: 4.6, image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=500&q=80' },
+  { id: 10, name: 'Piles Care Ayurvedic', category: 'Piles Care', price: 499, oldPrice: 749, rating: 4.5, image: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=500&q=80' },
+  { id: 11, name: 'Heart Health Support', category: 'Heart Health', price: 649, oldPrice: 899, rating: 4.8, image: 'https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?auto=format&fit=crop&w=500&q=80' },
+  { id: 12, name: 'Weight Management Kit', category: 'Weight Management', price: 799, oldPrice: 1199, rating: 4.9, image: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=500&q=80' },
+  { id: 13, name: 'Popular Combos Pack', category: 'Combos', price: 999, oldPrice: 1499, rating: 4.9, image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=500&q=80' },
 ];
 
+//  category content 
+const categoryInfo = {
+  'All Products': { title: 'Ayurvedic Products', desc: 'Discover Raghaveda, your Gateway to Natural Wellness. Our carefully selected range of Ayurvedic health supplements and herbal health care products, crafted by expert vaidyas.' },
+  'Heart Health': { title: 'Heart Health', desc: 'Support your heart wellness with Ayurvedic herbs like Arjuna, Ashwagandha. Our heart health products help maintain healthy cholesterol and blood pressure naturally.' },
+  'Liver Health': { title: 'Liver Health', desc: 'Support your liver wellness with our range of Ayurvedic liver health products. Formulated to complement a balanced lifestyle and detox your liver naturally.' },
+  'Daily Ayurveda': { title: 'Daily Ayurveda', desc: 'Daily Ayurvedic essentials for everyday balance, immunity and wellness. Made with pure herbs for daily use and holistic health.' },
+  'Gym & Fitness': { title: 'Gym & Fitness', desc: 'Ayurvedic wellness products for gym and fitness enthusiasts. Boost strength, stamina and muscle recovery with Ashwagandha and Shilajit.' },
+  'Sugar Management': { title: 'Sugar Management', desc: 'Manage blood sugar naturally with Karela, Jamun, Gudmar. Our Sugar Management range supports healthy glucose levels.' },
+  'Piles Care': { title: 'Piles Care', desc: 'Natural Ayurvedic care for Piles with soothing herbs. Get relief from discomfort and support healthy digestion.' },
+  'Weight Management': { title: 'Weight Management', desc: 'Healthy weight management with Ayurveda. Boost metabolism and burn fat naturally with our weight management kit.' },
+  'Combos': { title: 'Popular Combos', desc: 'Save more with our best-selling Ayurvedic combos curated for complete wellness and family health.' },
+  'Skin Care': { title: 'Skin Care', desc: 'Natural Ayurvedic skin care for glowing and healthy skin, free from chemicals and toxins.' },
+  'Hair Care': { title: 'Hair Care', desc: 'Ayurvedic hair care solutions to reduce hair fall and boost hair growth naturally.' },
+};
+
 function Products() {
-  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [selectedCategory, setSelectedCategory] = useState('All Products');
   const [searchTerm, setSearchTerm] = useState('');
-  const categories = ['All', 'Daily Ayurveda', 'Skin Care', 'Hair Care', 'Herbal Care', 'Wellness'];
+  const categories = Object.keys(categoryInfo);
 
   const filteredProducts = products.filter((p) => {
-    const cat = selectedCategory === 'All' || p.category === selectedCategory;
-    const search = p.name.toLowerCase().includes(searchTerm.toLowerCase());
-    return cat && search;
+    const catMatch = selectedCategory === 'All Products' || p.category === selectedCategory;
+    const searchMatch = p.name.toLowerCase().includes(searchTerm.toLowerCase());
+    return catMatch && searchMatch;
   });
 
+  const current = categoryInfo[selectedCategory];
+
   return (
-    <main className="bg-[#fffdf8] min-h-screen">
-      {/* Hero */}
-      <section className="py-[60px] px-[7%] text-center bg-gradient-to-br from-[#f5f3e8] to-[#e7edda]">
-        <p className="text-[#70844c] text-[11px] font-bold tracking-[2px]">NATURE • WELLNESS • BALANCE</p>
-        <h1 className="text-[34px] md:text-[44px] font-black text-[#254c35] mt-4">Shop All Products</h1>
-        <p className="max-w-[650px] mx-auto mt-3 text-[#626c60] text-[15px]">Explore our collection of nature-inspired wellness and self-care products.</p>
-      </section>
+    <main className="bg-white min-h-screen">
+      <div className="max-w-[1400px] mx-auto px-[4%] py-6 flex flex-col md:flex-row gap-8">
+        
+        <aside className="w-full md:w-[200px] flex-shrink-0">
+          <h3 className="text-[11px] font-bold tracking-[1.5px] text-gray-400 mb-4">CATEGORIES</h3>
+          <ul className="space-y-1">
+            {categories.map(cat => (
+              <li key={cat}>
+                <button onClick={() => setSelectedCategory(cat)}
+                  className={`text-left w-full py-2.5 px-3 text-[13px] rounded-md ${selectedCategory === cat ? 'text-[#c96a2c] font-bold bg-[#fff7f0] border-l-2 border-[#c96a2c]' : 'text-gray-600 hover:bg-gray-50'}`}>
+                  {cat}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </aside>
 
-      <section className="max-w-[1300px] mx-auto px-[7%] py-10">
-        {/* Heading + Search */}
-        <div className="flex flex-col md:flex-row justify-between gap-4 items-start md:items-center mb-6">
-          <div>
-            <h2 className="text-[22px] font-bold text-[#254c35]">Our Collection</h2>
-            <p className="text-[12px] text-[#737b70]">{filteredProducts.length} products found</p>
+        <section className="flex-1">
+          <div className="flex justify-between items-center mb-3">
+            <div className="text-[13px] text-gray-500"><Link to="/" className="underline">Home</Link> &gt; <span className="text-black font-medium">{selectedCategory}</span></div>
+            <div className="relative">
+              <span className="absolute left-3 top-2 text-gray-400 text-sm">🔍</span>
+              <input value={searchTerm} onChange={e => setSearchTerm(e.target.value)} placeholder="Search in this category..." className="w-[200px] pl-8 pr-3 py-2 text-[12px] border rounded-full bg-gray-50 focus:outline-none focus:ring-1 focus:ring-[#c96a2c]" />
+            </div>
           </div>
-          <input type="search" value={searchTerm} onChange={e => setSearchTerm(e.target.value)} placeholder="Search products..."
-            className="w-full md:w-[280px] p-3 text-sm border border-[#dce3d5] rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-[#78934d]" />
-        </div>
 
-        {/* Categories */}
-        <div className="flex gap-2 overflow-x-auto pb-3 mb-6 scrollbar-hide">
-          {categories.map(cat => (
-            <button key={cat} onClick={() => setSelectedCategory(cat)}
-              className={`whitespace-nowrap px-5 py-2.5 rounded-full text-sm font-semibold border transition ${selectedCategory === cat? 'bg-[#254c35] text-white border-[#254c35]' : 'bg-white text-[#254c35] border-[#dce3d5] hover:bg-[#254c35] hover:text-white'}`}>
-              {cat}
-            </button>
-          ))}
-        </div>
+          <h1 className="text-[24px] font-bold text-black">{current.title}</h1>
+          <p className="text-[13px] text-gray-600 mt-2 leading-5">{current.desc}</p>
 
-        {/* Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-          {filteredProducts.map(product => {
-            const off = Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100);
-            return (
-              <article key={product.id} className="bg-white border border-[#e5e8dc] rounded-xl overflow-hidden hover:shadow-lg transition hover:-translate-y-1">
-                <Link to={`/products/${product.id}`} className="relative block h-[190px] md:h-[240px] bg-[#f5f1e6]">
-                  <span className="absolute top-3 left-3 bg-[#1a3d2e] text-white text-[10px] font-bold px-2 py-1 rounded">{off}% OFF</span>
-                  <img src={product.image} alt={product.name} loading="lazy" className="w-full h-full object-cover"
-                    onError={(e) => e.target.src = "https://images.unsplash.com/photo-1608571423902-eed4a94d8108?w=500"} />
-                </Link>
-                <div className="p-4">
-                  <p className="text-[11px] text-[#8a9a6a] font-bold">{product.category}</p>
-                  <h3 className="font-bold text-[#1a3d2e] text-[14px] mt-1 line-clamp-1">{product.name}</h3>
-                  <p className="text-[11px] text-gray-500 mt-1">⭐ {product.rating} / 5</p>
-                  <div className="flex gap-2 items-center mt-2">
-                    <span className="font-bold text-[#1a3d2e]">₹{product.price}</span>
-                    <span className="text-xs line-through text-gray-400">₹{product.oldPrice}</span>
-                  </div>
-                  <Link to={`/products/${product.id}`} className="block text-center mt-3 w-full bg-[#1a3d2e] text-white py-2.5 rounded-lg text-[12px] font-bold hover:bg-black">View Product →</Link>
-                </div>
-              </article>
-            )
-          })}
-        </div>
-
-        {filteredProducts.length === 0 && (
-          <div className="text-center py-16 bg-white border border-[#e5e8dc] rounded-xl mt-6">
-            <h3 className="text-lg font-bold text-[#254c35]">No products found</h3>
-            <p className="text-sm text-gray-500 mt-1">Try another search or category.</p>
-            <button onClick={() => { setSelectedCategory('All'); setSearchTerm(''); }}
-              className="mt-4 px-6 py-2 bg-[#254c35] text-white rounded-md text-sm">Show All Products</button>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+            {filteredProducts.map(product => (
+              <div key={product.id} className="border rounded-lg overflow-hidden">
+                <Link to={`/products/${product.id}`} className="block bg-[#fdf8f3] h-[180px]"><img src={product.image} className="w-full h-full object-contain p-2" /></Link>
+                <div className="p-3 text-center"><h3 className="text-[12px] font-medium line-clamp-2 min-h-[30px]">{product.name}</h3><p className="font-bold mt-1 text-[13px]">₹ {product.price}</p><Link to={`/products/${product.id}`} className="block mt-2 bg-[#1a3d2e] text-white text-[11px] py-2 rounded">View Product</Link></div>
+              </div>
+            ))}
           </div>
-        )}
-      </section>
+
+          <div className="mt-12 bg-[#f9faf6] p-6 rounded-xl">
+            <h2 className="font-bold">What is {current.title} Ayurvedic Medicine?</h2>
+            <p className="text-[13px] text-gray-600 mt-2 leading-6">Our {current.title} products are made with 100% pure herbs, clinically tested and trusted by thousands of customers. Choose Raghaveda for authentic Ayurveda.</p>
+          </div>
+        </section>
+      </div>
     </main>
   );
 }
-
 export default Products;
