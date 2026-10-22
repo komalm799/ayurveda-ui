@@ -11,6 +11,7 @@ import { homeproduct } from "../data/homeproduct.js";
 import sugarQuiz from "../assets/sugarQuiz.jpg"
 import weightQuiz from "../assets/weightQuiz.jpg"
 import BlogPreview from "../components/BlogPreview";
+import CustomersSay from "../components/CustomersSay";
 
 export default function Home() {
   const [slide, setSlide] = useState(0);
@@ -183,6 +184,8 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      <CustomersSay />
 
       <div className="w-full bg-white py-10 md:py-14">
         <div className="max-w-[1300px] mx-auto px-4 md:px-6">
