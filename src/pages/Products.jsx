@@ -17,7 +17,6 @@ const products = [
   { id: 13, name: 'Popular Combos Pack', category: 'Combos', price: 999, oldPrice: 1499, rating: 4.9, image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=500&q=80' },
 ];
 
-//  category content 
 const categoryInfo = {
   'All Products': { title: 'Ayurvedic Products', desc: 'Discover Raghaveda, your Gateway to Natural Wellness. Our carefully selected range of Ayurvedic health supplements and herbal health care products, crafted by expert vaidyas.' },
   'Heart Health': { title: 'Heart Health', desc: 'Support your heart wellness with Ayurvedic herbs like Arjuna, Ashwagandha. Our heart health products help maintain healthy cholesterol and blood pressure naturally.' },
@@ -36,6 +35,18 @@ function Products() {
   const [selectedCategory, setSelectedCategory] = useState('All Products');
   const [searchTerm, setSearchTerm] = useState('');
   const categories = Object.keys(categoryInfo);
+
+  const handleAddToCart = (product) => {
+    const existing = JSON.parse(localStorage.getItem("cart") || "[]");
+    const found = existing.find(item => item.id === product.id);
+    if (found) {
+      found.qty = (found.qty || 1) + 1;
+    } else {
+      existing.push({ ...product, qty: 1 });
+    }
+    localStorage.setItem("cart", JSON.stringify(existing));
+    alert(`${product.name} Added to Cart 🛒`);
+  };
 
   const filteredProducts = products.filter((p) => {
     const catMatch = selectedCategory === 'All Products' || p.category === selectedCategory;
@@ -77,9 +88,19 @@ function Products() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
             {filteredProducts.map(product => (
-              <div key={product.id} className="border rounded-lg overflow-hidden">
-                <Link to={`/products/${product.id}`} className="block bg-[#fdf8f3] h-[180px]"><img src={product.image} className="w-full h-full object-contain p-2" /></Link>
-                <div className="p-3 text-center"><h3 className="text-[12px] font-medium line-clamp-2 min-h-[30px]">{product.name}</h3><p className="font-bold mt-1 text-[13px]">₹ {product.price}</p><Link to={`/products/${product.id}`} className="block mt-2 bg-[#1a3d2e] text-white text-[11px] py-2 rounded">View Product</Link></div>
+              <div key={product.id} className="border rounded-lg overflow-hidden flex flex-col">
+                <Link to={`/products/${product.id}`} className="block bg-[#fdf8f3] h-[180px]"><img src={product.image} className="w-full h-full object-contain p-2" alt={product.name} /></Link>
+                <div className="p-3 text-center flex flex-col flex-1">
+                  <h3 className="text-[12px] font-medium line-clamp-2 min-h-[30px]">{product.name}</h3>
+                  <p className="font-bold mt-1 text-[13px]">₹ {product.price}</p>
+                  
+                  {/* Buttons */}
+                  <div className="mt-2 flex flex-col gap-2 mt-auto">
+                    <Link to={`/products/${product.id}`} className="block bg-[#1a3d2e] text-white text-[11px] py-2 rounded text-center">View Product</Link>
+                    <button onClick={() => handleAddToCart(product)} className="w-full bg-white border border-[#1a3d2e] text-[#1a3d2e] text-[11px] py-2 rounded font-bold hover:bg-[#1a3d2e] hover:text-white transition-all">Add to Cart +</button>
+                  </div>
+
+                </div>
               </div>
             ))}
           </div>
