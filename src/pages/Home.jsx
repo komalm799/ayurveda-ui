@@ -6,12 +6,13 @@ import letsgain from "../assets/letsgain.webp";
 import hero2 from "../assets/hero2.webp";
 import hero3 from "../assets/hero3.webp";
 import hero4 from "../assets/hero4.webp";
-import Categories from "./Categories.jsx";
+
 import { homeproduct } from "../data/homeproduct.js";
 import sugarQuiz from "../assets/sugarQuiz.jpg"
 import weightQuiz from "../assets/weightQuiz.jpg"
 import BlogPreview from "../components/BlogPreview";
 import CustomersSay from "../components/CustomersSay";
+import WellnessJourney from "../components/WellnessJourney"
 
 export default function Home() {
   const [slide, setSlide] = useState(0);
@@ -70,8 +71,8 @@ export default function Home() {
       </div>
 
       
-
-      <Categories onSelect={(slug) => console.log(slug)} />
+      <WellnessJourney />
+      
 
       {/* 4. HIGH QUALITY - EXACT AYUVYA CARD */}
       <div className="bg-[#fcfcf8] py-12 px-4 md:px-5 text-center">
@@ -87,7 +88,8 @@ export default function Home() {
           {homeproduct[tab].map(p => (
             <div key={p.id} className="bg-white border border-gray-100 rounded-[16px] overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
               <div className="relative bg-[#F9F6EF]">
-                {/* Ayuvya wala top black strip */}
+
+                {/*  top black strip */}
                 <div className="absolute top-0 left-0 right-0 bg-black text-white text-[8px] font-bold tracking-wider text-center py-[4px] z-10">As Seen On SHARK TANK INDIA</div>
                 <div className="absolute top-7 right-2 bg-black text-white text-[9px] w-9 h-9 rounded-full grid place-items-center font-bold z-10 shadow">{p.off}</div>
                 <button onClick={(e)=>handleAddToCartClick(p,e)} className="absolute top-7 left-2 bg-white w-8 h-8 rounded-full grid place-items-center shadow z-10 hover:bg-black hover:text-white transition"><FaShoppingCart size={11}/></button>
@@ -108,7 +110,7 @@ export default function Home() {
         <Link to="/products" className="inline-block mt-10 bg-[#0F3D2E] text-white px-8 py-3 rounded-full text-[12px] font-bold tracking-wider hover:bg-black transition">Shop All Products</Link>
       </div>
 
-      {/* BAKI TUMHARA SAME CODE... */}
+      
       <div className="w-full bg-[#f8f0e0] grid md:grid-cols-2 items-center overflow-hidden mt-10">
         <div className="p-8 md:p-12 lg:px-16">
           <h2 className="text-[22px] md:text-[28px] font-black text-[#1a1a1a] leading-tight">Ancient Wisdom. Modern Wellness.</h2>
