@@ -1,21 +1,29 @@
 import { useState } from 'react';
-import { products } from '../data/product.js';
+import { products, categories as catLinks } from '../data/product.js';
 import ProductCard from '../components/ProductCard.jsx';
 
 export default function Products() {
   const [selected, setSelected] = useState("All Products");
-  const categories = ["All Products","Heart Health","Liver Health","Daily Ayurveda","Gym & Fitness","Sugar Management","Piles Care","Weight Management","Skin Care","Hair Care"];
+  
+  // Sir wale 12 + All Products
+  const categories = ["All Products","Weight Management","Hair Care","Skin Care","Stress Management","Blood Purifier","Digestion Support","Eye Care","Heart Care","Migraine Support","Herbal Shots","Plant Protein Supplement","Sugar Management"];
 
   const filtered = selected === "All Products" ? products : products.filter(p => p.category === selected);
 
   return (
     <div className="bg-[#fffcf0] min-h-screen">
       <div className="max-w-[1350px] mx-auto flex">
-        <div className="hidden md:block w-[200px] shrink-0 p-6">
+        <div className="hidden md:block w-[220px] shrink-0 p-6">
           <p className="text-[11px] tracking-[2px] text-gray-400 font-bold mb-4">CATEGORIES</p>
           <div className="space-y-1">
             {categories.map(cat => (
-              <button key={cat} onClick={()=>setSelected(cat)} className={`block w-full text-left text-[13px] py-2.5 px-2 rounded ${selected===cat ? 'bg-[#fff3e0] text-[#b85c00] font-bold' : 'text-[#333] hover:bg-gray-100'}`}>{cat}</button>
+              <button 
+                key={cat} 
+                onClick={()=>setSelected(cat)} 
+                className={`block w-full text-left text-[13px] py-2.5 px-2 rounded ${selected===cat ? 'bg-[#fff3e0] text-[#b85c00] font-bold' : 'text-[#333] hover:bg-gray-100'}`}
+              >
+                {cat}
+              </button>
             ))}
           </div>
         </div>
@@ -28,14 +36,12 @@ export default function Products() {
               Discover Ayuvya, your Gateway to Natural Wellness. Our carefully selected range of Ayurvedic health supplements and herbal health care products, crafted by expert vaidyas.
             </p>
             
-            {/* Cards Grid - Ab ProductCard se ayega same design */}
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-6">
               {filtered.map(p => (
                 <ProductCard key={p.id} p={p} />
               ))}
             </div>
 
-            {/* SEO Text niche */}
             {selected === "All Products" && (
               <div className="mt-16 border-t pt-10 text-[#333] leading-7">
                 <h2 className="text-[22px] font-bold mb-3">Understanding Ayurvedic Medicine</h2>

@@ -2,6 +2,7 @@ import { Routes, Route, Link } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from "./pages/Home";
+import Products from './pages/Products'; // <-- ADD KIYA
 import ProductDetails from './pages/ProductDetails';
 import Cart from './pages/Cart';
 import Wishlist from './pages/WishList';
@@ -13,16 +14,18 @@ import Checkouts from './pages/Checkouts';
 import OrderSuccess from './pages/OrderSuccess';
 import Login from './pages/Login';
 
-// TUMHARI NAYI BANAYI HUI 9 FILES
-import AllProducts from './pages/categories/AllProducts';
-import HeartHealth from './pages/categories/HeartHealth';
-import LiverHealth from './pages/categories/LiverHealth';
-import DailyAyurveda from './pages/categories/DailyAyurveda';
-import GymFitness from './pages/categories/GymFitness';
-import PilesCare from './pages/categories/PilesCare';
-import WeightManagement from './pages/categories/WeightManagement';
-import WomensHealth from './pages/categories/WomensHealth';
-import Combos from './pages/categories/Combos';
+import WeightManagement from './pages/categories/weight-management';
+import HairCare from './pages/categories/hair-care';
+import SkinCare from './pages/categories/skin-care';
+import StressManagement from './pages/categories/stress-management';
+import BloodPurifier from './pages/categories/blood-purifier';
+import DigestionSupport from './pages/categories/digestion-support';
+import EyeCare from './pages/categories/eye-care';
+import HeartCare from './pages/categories/heart-care';
+import MigraineSupport from './pages/categories/migraine-support';
+import HerbalShots from './pages/categories/herbal-shots';
+import PlantProtein from './pages/categories/plant-protein-supplement';
+import SugarManagement from './pages/categories/sugar-management';
 
 function App() {
   return (
@@ -30,21 +33,26 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-
-        {/* NEW CATEGORY STRUCTURE - TUMHARE PAPER JAISE */}
-        <Route path="/products" element={<AllProducts />} />
-        <Route path="/products/heart-health" element={<HeartHealth />} />
-        <Route path="/products/liver-health" element={<LiverHealth />} />
-        <Route path="/products/daily-ayurveda" element={<DailyAyurveda />} />
-        <Route path="/products/gym-fitness" element={<GymFitness />} />
-        <Route path="/products/piles-care" element={<PilesCare />} />
-        <Route path="/products/weight-management" element={<WeightManagement />} />
-        <Route path="/products/womens-health" element={<WomensHealth />} />
-        <Route path="/products/combos" element={<Combos />} />
         
-        {/* PRODUCT DETAILS - FINAL */}
+        {/* ALL PRODUCTS */}
+        <Route path="/products" element={<Products />} />
+
+        {/* SIR KI 12 CATEGORIES */}
+        <Route path="/products/weight-management" element={<WeightManagement />} />
+        <Route path="/products/hair-care" element={<HairCare />} />
+        <Route path="/products/skin-care" element={<SkinCare />} />
+        <Route path="/products/stress-management" element={<StressManagement />} />
+        <Route path="/products/blood-purifier" element={<BloodPurifier />} />
+        <Route path="/products/digestion-support" element={<DigestionSupport />} />
+        <Route path="/products/eye-care" element={<EyeCare />} />
+        <Route path="/products/heart-care" element={<HeartCare />} />
+        <Route path="/products/migraine-support" element={<MigraineSupport />} />
+        <Route path="/products/herbal-shots" element={<HerbalShots />} />
+        <Route path="/products/plant-protein-supplement" element={<PlantProtein />} />
+        <Route path="/products/sugar-management" element={<SugarManagement />} />
+        
+        {/* DETAIL - sirf ek */}
         <Route path="/product/:id" element={<ProductDetails />} />
-        <Route path="/products/:id" element={<ProductDetails />} />
         
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkouts />} />
@@ -56,19 +64,10 @@ function App() {
         <Route path="/order-success" element={<OrderSuccess />} />
         <Route path="/login" element={<Login />} />
 
-        <Route
-          path="*"
-          element={
-            <main className="page-content p-10">
-              <h2>404 - Page Not Found</h2>
-              <Link to="/" className="underline">Return Home</Link>
-            </main>
-          }
-        />
+        <Route path="*" element={<main className="page-content p-10"><h2>404 - Page Not Found</h2><Link to="/" className="underline">Return Home</Link></main>} />
       </Routes>
       <Footer/>
     </div>
   );
 }
-
 export default App;

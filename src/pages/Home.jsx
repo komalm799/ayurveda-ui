@@ -60,6 +60,7 @@ export default function Home() {
         <Link to="/products">
           <img src={imgs[slide]} alt="banner" className="w-full h-full object-cover object-center" />
         </Link>
+
         {/* Ayuvya style arrows */}
         <button onClick={()=>setSlide(s=> (s-1+5)%5)} className="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 z-20 bg-white w-8 h-8 md:w-10 md:h-10 rounded-full grid place-items-center shadow-lg hover:scale-105 transition"><FaArrowLeft size={12}/></button>
         <button onClick={()=>setSlide(s=> (s+1)%5)} className="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 z-20 bg-white w-8 h-8 md:w-10 md:h-10 rounded-full grid place-items-center shadow-lg hover:scale-105 transition"><FaArrowRight size={12}/></button>
@@ -119,7 +120,7 @@ export default function Home() {
         </div>
         <div className="relative h-[260px] md:h-[380px] w-full bg-[#1e3a2e]">
           <img src="https://rehab-centre.org.uk/tenancy/assets/images/v2-13nwwl-mhu2d.jpg" alt="Ayuvya Ayurveda" className="w-full h-full object-cover opacity-90"/>
-          <div className="absolute inset-0 flex items-center justify-center"><h1 className="text-white text-[40px] md:text-[60px] font-light tracking-[8px] opacity-80">AYUVYA</h1></div>
+          <div className="absolute inset-0 flex items-center justify-center"><h1 className="text-white text-[40px] md:text-[60px] font-light tracking-[8px] opacity-80">ΛYUVEERΛ™</h1></div>
         </div>
       </div>
 
