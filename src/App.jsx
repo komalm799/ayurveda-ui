@@ -2,7 +2,7 @@ import { Routes, Route, Link } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from "./pages/Home";
-import Products from './pages/Products'; // <-- ADD KIYA
+import Products from './pages/Products'; 
 import ProductDetails from './pages/ProductDetails';
 import Cart from './pages/Cart';
 import Wishlist from './pages/Wishlist';
