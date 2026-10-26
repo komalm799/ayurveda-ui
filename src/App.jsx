@@ -27,6 +27,13 @@ import HerbalShots from './pages/categories/herbal-shots';
 import PlantProtein from './pages/categories/plant-protein-supplement';
 import SugarManagement from './pages/categories/sugar-management';
 
+import FAQs from './pages/customerServices/FAQs';
+import TrackOrder from './pages/customerServices/TrackOrder';
+import ReferFriend from './pages/customerServices/ReferFriend';
+import PrivacyPolicy from './pages/TermsAndCondition/PrivacyPolicy';
+import ShippingPolicy from './pages/TermsAndCondition/ShippingPolicy';
+import TermsAndCondition from './pages/TermsAndCondition/TermsAndCondition';
+
 function App() {
   return (
     <div className="app">
@@ -63,6 +70,13 @@ function App() {
         <Route path="/shop" element={<Shop />} />
         <Route path="/order-success" element={<OrderSuccess />} />
         <Route path="/login" element={<Login />} />
+
+        <Route path="/faqs" element={<FAQs />} />
+        <Route path="/track-order" element={<TrackOrder />} />
+        <Route path="/refer-friend" element={<ReferFriend />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/shipping-policy" element={<ShippingPolicy />} />
+        <Route path="/terms-and-conditions" element={<TermsAndCondition />} />
 
         <Route path="*" element={<main className="page-content p-10"><h2>404 - Page Not Found</h2><Link to="/" className="underline">Return Home</Link></main>} />
       </Routes>
