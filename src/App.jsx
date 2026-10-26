@@ -5,7 +5,7 @@ import Home from "./pages/Home";
 import Products from './pages/Products'; // <-- ADD KIYA
 import ProductDetails from './pages/ProductDetails';
 import Cart from './pages/Cart';
-import Wishlist from './pages/WishList';
+import Wishlist from './pages/Wishlist';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Blog from './pages/Blog';
@@ -37,7 +37,7 @@ function App() {
         {/* ALL PRODUCTS */}
         <Route path="/products" element={<Products />} />
 
-        {/* SIR KI 12 CATEGORIES */}
+        {/*  12 CATEGORIES */}
         <Route path="/products/weight-management" element={<WeightManagement />} />
         <Route path="/products/hair-care" element={<HairCare />} />
         <Route path="/products/skin-care" element={<SkinCare />} />
@@ -51,7 +51,7 @@ function App() {
         <Route path="/products/plant-protein-supplement" element={<PlantProtein />} />
         <Route path="/products/sugar-management" element={<SugarManagement />} />
         
-        {/* DETAIL - sirf ek */}
+        {/* DETAIL -  */}
         <Route path="/product/:id" element={<ProductDetails />} />
         
         <Route path="/cart" element={<Cart />} />
